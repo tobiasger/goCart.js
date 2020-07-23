@@ -1,3 +1,5 @@
+/*global cartStrings, a*/
+
 import './scss/go-cart.scss';
 import {formatMoney} from '@shopify/theme-currency/currency';
 import 'whatwg-fetch';
@@ -282,7 +284,7 @@ class GoCart {
         <div class="go-cart-modal-item">
             <div class="go-cart-item__image" style="background-image: url(${product.image});"></div>
             <div class="go-cart-item__info">
-                <a href="${product.url}" class="go-cart-item__title">${product.product_title} ${productVariant}</a> was added to your cart.
+                <a href="${product.url}" class="go-cart-item__title">${product.product_title} ${productVariant}</a> ${cartStrings.added_to_cart}.
             </div>
         </div>
       `;
@@ -312,7 +314,7 @@ class GoCart {
                 </div>
             </div>
             <div class="go-cart-item__price">${formatMoney(item.line_price, this.moneyFormat)}</div>
-            <a class="go-cart-item__remove ${this.removeFromCartNoDot}">Remove</a>
+            <a class="go-cart-item__remove ${this.removeFromCartNoDot}">${cartStrings.remove}</a>
         </div>
       `;
             this.cartDrawerContent.innerHTML += cartSingleProduct;
@@ -371,7 +373,7 @@ class GoCart {
                 </div>
             </div>
             <div class="go-cart-item__price">${formatMoney(item.line_price, this.moneyFormat)}</div>
-            <a class="go-cart-item__remove ${this.removeFromCartNoDot}">Remove</a>
+            <a class="go-cart-item__remove ${this.removeFromCartNoDot}">${cartStrings.remove}</a>
         </div>
       `;
             this.cartMiniCartContent.innerHTML += cartSingleProduct;
@@ -410,13 +412,13 @@ class GoCart {
     renderBlankCartDrawer() {
         this.cartDrawerSubTotal.parentNode.classList.add('is-invisible');
         this.clearCartDrawer();
-        this.cartDrawerContent.innerHTML = '<div class="go-cart__empty">Your Cart is currenty empty!</div>';
+        this.cartDrawerContent.innerHTML = '<div class="go-cart__empty">' + cartStrings.cart_empty + '</div>';
     }
 
     renderBlankMiniCart() {
         this.cartMiniCartSubTotal.parentNode.classList.add('is-invisible');
         this.clearMiniCart();
-        this.cartMiniCartContent.innerHTML = '<div class="go-cart__empty">Your Cart is currenty empty!</div>';
+        this.cartMiniCartContent.innerHTML = '<div class="go-cart__empty">' + cartStrings.cart_empty + '</div>';
     }
 
     clearCartDrawer() {
